@@ -11,7 +11,6 @@ use Illuminate\Console\Command;
 
 use Aimeos\Cms\Concerns\Benchmarks;
 use Aimeos\Cms\Models\Page;
-use Aimeos\Nestedset\NestedSet;
 
 
 class BenchmarkJsonapi extends Command
@@ -58,7 +57,7 @@ class BenchmarkJsonapi extends Command
         $domain = (string) ( $this->option( 'domain' ) ?: '' );
 
         $root = Page::where( 'tag', 'root' )->where( 'domain', $domain )->firstOrFail();
-        $page = Page::where( 'tag', '!=', 'root' )->orderByDesc( NestedSet::DEPTH )->firstOrFail();
+        $page = Page::where( 'tag', '!=', 'root' )->orderByDesc( 'depth' )->firstOrFail();
 
         $this->header();
 
