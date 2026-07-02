@@ -13,7 +13,7 @@ use Illuminate\Foundation\Events\Dispatchable;
 /**
  * Audit event for read-only JSON:API requests.
  */
-final class Queried
+final class CmsJsonapi
 {
     use Dispatchable;
 
