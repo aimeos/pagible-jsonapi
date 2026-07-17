@@ -1,7 +1,7 @@
 <?php
 
 /**
- * @license LGPL, https://opensource.org/license/lgpl-3-0
+ * @license MIT, https://opensource.org/license/mit
  */
 
 
@@ -9,6 +9,7 @@ namespace Tests;
 
 use Database\Seeders\TestSeeder;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Illuminate\Support\Facades\RateLimiter;
 use LaravelJsonApi\Testing\MakesJsonApiRequests;
 
 
@@ -34,6 +35,12 @@ class JsonapiTest extends JsonapiTestAbstract
         return array_merge( parent::getPackageProviders( $app ), [
             'LaravelJsonApi\Laravel\ServiceProvider'
         ] );
+    }
+
+
+    public function testJsonapiRateLimiter()
+    {
+        $this->assertNotNull( RateLimiter::limiter( 'cms-jsonapi' ) );
     }
 
 
